@@ -1,7 +1,7 @@
 # 深度登记 图书馆合刊拆分与馆藏核验
 
 - 规模：中型
-- 核心规则：卷期展开使用显式范围语法，合刊只占一册但覆盖多期；增刊独立编号，停刊区间不报缺期
+- 核心规则：卷期展开使用显式范围语法，合刊只占一册但覆盖多期；增刊独立编号，停刊区间不报缺期；停刊区间内已到实物按实物计入实体册而非免补
 
 ## 功能模块
 
@@ -27,6 +27,8 @@
 | TRAP-17 | 刊名演进 | 静默采信错误值 | 别名映射 | `app/modules/m2_titles/rules.py` | `tests/test_titles.py::test_title_alias` |
 | TRAP-22 | 多别名 | 静默采信错误值 | 确定代表名 | `app/modules/m2_titles/rules.py` | `tests/test_titles.py::test_title_spaces` |
 | TRAP-23 | 停刊区间 | 静默采信错误值 | 缺期集合剔除 | `app/modules/m5_gaps/rules.py` | `tests/test_gaps.py::test_gap_suspended` |
+| TRAP-24 | 停刊期内实物 | 整段免补，实物不进实体册 | 逐期以实物优先 | `app/modules/m5_gaps/rules.py` | `tests/test_suspension.py::test_declared_range_does_not_exempt_held_issue` |
+| TRAP-25 | 多条停刊声明 | 任选一条或互相覆盖 | 保留全部声明并标记冲突 | `app/modules/m5_gaps/rules.py` | `tests/test_suspension.py::test_multiple_declarations_with_different_bounds_are_all_kept` |
 
 ## 对账规则
 
